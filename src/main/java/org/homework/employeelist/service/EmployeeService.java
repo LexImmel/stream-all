@@ -19,4 +19,12 @@ public interface EmployeeService {
     Employee findEmployee(String name, String lastName) throws EmployeeNotFoundException;
 
     List<Employee> getAllEmployees();
+
+
+       List<Employee> getEmployeesByDepartmentId(int departmentId);
+
+    List<Employee> getEmployeesByDepartmentId(Integer departmentId);
+
+   List<Employee> getAllEmployeesByDepartmentId(Integer departmentId);
 }
+

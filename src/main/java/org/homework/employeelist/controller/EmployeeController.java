@@ -7,6 +7,7 @@ import org.homework.employeelist.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employees")
@@ -22,6 +23,7 @@ public class EmployeeController {
     public Employee addEmployee(
             @RequestParam ("name") String name,
             @RequestParam ("surname") String surname
+
     ) throws EmployeeAlreadyAddedException, EmployeeStorageIsFullException {
         return   employeeService.addEmployee(name,surname);
     }
@@ -49,6 +51,7 @@ public class EmployeeController {
     public List <Employee>  getAllEmployees() {
 
         return employeeService.getAllEmployees();
+
     }
 }
 
