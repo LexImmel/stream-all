@@ -39,7 +39,7 @@ public class EmployeeBook {
     public int calculateSumSalary() {
         int total = 0;
         for (Employee employee : emp) {
-            total += (int) employee.getSalary();
+            total += (Double) employee.getSalary();
         }
         return total;
     }
@@ -81,7 +81,7 @@ public class EmployeeBook {
     public void countIndexedSalary(int percent) {
         for (Employee employee : emp) {
             double currentSalary = employee.getSalary();
-            employee.setSalary((int) (currentSalary * (percent / 100f + 1)));
+            employee.setSalary((Double) (currentSalary * (percent / 100f + 1)));
         }
     }
 
@@ -90,7 +90,7 @@ public class EmployeeBook {
         int sum = 0;
         for (Employee employee : emp) {
             if (employee.getDepartmentId() == dept) {
-                sum += (int) employee.getSalary();
+                sum += (Double) employee.getSalary();
             }
         }
         return sum;
@@ -143,7 +143,7 @@ public class EmployeeBook {
         for (Employee employee : emp) {
             double currentSalary = employee.getSalary();
             if (employee.getDepartmentId() == dept) {
-                employee.setSalary((int) (currentSalary * (percent / 100f + 1)));
+                employee.setSalary((Double) (currentSalary * (percent / 100f + 1)));
 
             }
         }
