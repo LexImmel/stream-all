@@ -1,41 +1,44 @@
 package org.homework.employeelist.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.homework.employeelist.Employee;
 import org.homework.employeelist.exceptions.EmployeeNotFoundException;
-import org.homework.employeelist.service.DepartmentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.homework.employeelist.service.api.DepartmentService;
+import org.springframework.web.bind.annotation.*;
 
-import java.awt.List;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/departments")
+@RequiredArgsConstructor
+@RequestMapping("/department")
 public class DepartmentController {
     private final DepartmentService departmentService;
 
-    public DepartmentController(DepartmentService departmentService) {
-        this.departmentService = departmentService;
+    @GetMapping("/{departmentId}/employees")
+    public List<Employee> employees(@PathVariable Integer departmentId) {
+        return departmentService.getByDepartment(departmentId);
     }
 
+    @GetMapping("/{departmentId}/salary/sum")
+    public Double sumSalaryByDepartment(@PathVariable Integer departmentId) {
+        return departmentService.sumSalaryByDepartment(departmentId);
+    }
 
+    @GetMapping("/{departmentId}/salary/max")
+    public Double maxSalaryByDepartment(@PathVariable Integer departmentId) throws EmployeeNotFoundException {
 
-   @GetMapping("/max-salary")
-   public Employee maxSalaryByDepartment(@RequestParam("departmentId") Integer departmentId) throws EmployeeNotFoundException {
+        return departmentService.maxSalaryByDepartment(departmentId);
+    }
 
-       return departmentService.maxSalaryByDepartment(departmentId);
-   }
+    @GetMapping("/{departmentId}/salary/min")
+    public Double minSalaryByDepartment(@PathVariable Integer departmentId) throws EmployeeNotFoundException {
 
-   @GetMapping("/min-salary")
-   public Employee minSalaryByDepartment(@RequestParam("departmentId") Integer departmentId) throws EmployeeNotFoundException {
+        return departmentService.minSalaryByDepartment(departmentId);
+    }
 
-      return departmentService.minSalaryByDepartment(departmentId);
-  }
-
-  @GetMapping("/all")
-    public Map<Integer, java.util.List<Employee>> getEmployeesByDepartment(){
-return departmentService.getEmployeesByDepartment();
-  }
+    @GetMapping("/{departmentId}/all")
+    public Map<Integer, List<Employee>> getEmployeesByDepartment() {
+        return departmentService.getEmployeesByDepartment();
+    }
 }
